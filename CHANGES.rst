@@ -4,6 +4,11 @@ Changelog
 3.4 (unreleased)
 ----------------
 
+Features:
+
+- Update ``plone.app.mosaic`` integration documentation with the
+  new ``Contentlisting tile`` feature (this needs ``plone.app.standardtiles`` >= 2.3.3)
+  [petschki]
 - Add sorting tile/portlet to populate selected sort indexes to enduser
   [petschki]
 - Added translation display_modifier for portal_type and Type.
