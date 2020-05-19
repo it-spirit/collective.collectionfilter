@@ -29,7 +29,7 @@ before_install:
     echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
   - mkdir webdriver; export PATH=$(pwd)/webdriver:$PATH
   - pip install webdrivermanager; webdrivermanager chrome --linkpath $(pwd)/webdriver
-  - pip install -r https://github.com/plone/buildout.coredev/raw/$PLONE_VERSION/requirements.txt
+  - pip install -r requirements.txt
 install:
   - buildout -Nc test-$PLONE_VERSION.x.cfg annotate
   - buildout -Nc test-$PLONE_VERSION.x.cfg
