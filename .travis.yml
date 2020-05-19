@@ -6,13 +6,13 @@ addons:
 matrix:
   include:
     - python: "2.7"
-      env: PLONE_VERSION=5.0.x
+      env: PLONE_VERSION=5.0
     - python: "2.7"
-      env: PLONE_VERSION=5.1.x
+      env: PLONE_VERSION=5.1
     - python: "2.7"
-      env: PLONE_VERSION=5.2.x
+      env: PLONE_VERSION=5.2
     - python: "3.7"
-      env: PLONE_VERSION=5.2.x
+      env: PLONE_VERSION=5.2
   fast_finish: true
 cache:
   pip: true
@@ -26,8 +26,8 @@ before_install:
   - pip install webdrivermanager; webdrivermanager chrome --linkpath $(pwd)/webdriver
   - pip install -r https://github.com/plone/buildout.coredev/raw/$PLONE_VERSION/requirements.txt
 install:
-  - buildout -Nc test-$PLONE_VERSION.cfg annotate
-  - buildout -Nc test-$PLONE_VERSION.cfg
+  - buildout -Nc test-$PLONE_VERSION.x.cfg annotate
+  - buildout -Nc test-$PLONE_VERSION.x.cfg
 before_script:
   - 'export DISPLAY=:99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
