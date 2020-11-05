@@ -103,7 +103,7 @@ def get_filter_items(
     if not narrow_down:
         # Additive filtering is about adding other filter values of the same
         # index.
-        extra_ignores = [idx, idx + '_op']
+        extra_ignores = [idx, idx + '_operator']
     urlquery = base_query(request_params, extra_ignores)
 
     # Get all collection results with additional filter defined by urlquery
@@ -119,7 +119,7 @@ def get_filter_items(
         # even when narrow_down filters the display of indexed values
         # count_query allows us to do that true count
         count_query = {}
-        count_urlquery = base_query(request_params, [idx, idx + '_op'])
+        count_urlquery = base_query(request_params, [idx, idx + '_operator'])
         count_query.update(count_urlquery)
         catalog_results_fullcount = ICollection(collection).results(
             batch=False,
@@ -182,7 +182,7 @@ def get_filter_items(
             elif filter_type != 'single':
                 # additive filter behavior
                 _urlquery[idx] = current_idx_value + [filter_value]
-                _urlquery[idx + '_op'] = filter_type  # additive operator
+                _urlquery[idx + '_operator'] = filter_type  # additive operator
             else:
                 _urlquery[idx] = filter_value
 
@@ -212,7 +212,7 @@ def get_filter_items(
 
     # Entry to clear all filters
     urlquery_all = {
-        k: v for k, v in list(urlquery.items()) if k not in (idx, idx + '_op')
+        k: v for k, v in list(urlquery.items()) if k not in (idx, idx + '_operator')
     }
     if narrow_down and show_count:
         catalog_results = catalog_results_fullcount

@@ -130,7 +130,7 @@ class TestFilteritems(unittest.TestCase):
             self.collection_uid, 'portal_type',
             request_params={
                 'portal_type': ['Event', 'Document'],
-                'portal_type_op': 'or',
+                'portal_type_operator': 'or',
             },
             filter_type="or",
             cache_enabled=False)
@@ -144,7 +144,7 @@ class TestFilteritems(unittest.TestCase):
             self.collection_uid, 'portal_type',
             request_params={
                 'portal_type': ['Event', 'Document'],
-                'portal_type_op': 'and',
+                'portal_type_operator': 'and',
             },
             filter_type="and",
             cache_enabled=False)
@@ -192,8 +192,8 @@ class TestFilteritems(unittest.TestCase):
         self.assertEqual(get_data_by_val(result, u'Süper')['selected'], True)
 
         self.assertEqual(qs(result, u'Süper'), {})
-        self.assertEqual(qs(result, u'Dokumänt'), {'Subject_op': 'and', 'Subject': [u'Süper', u'Dokumänt']})
-        self.assertEqual(qs(result, u'Evänt'), {'Subject_op': 'and', 'Subject': [u'Süper', u'Evänt']})
+        self.assertEqual(qs(result, u'Dokumänt'), {'Subject_operator': 'and', 'Subject': [u'Süper', u'Dokumänt']})
+        self.assertEqual(qs(result, u'Evänt'), {'Subject_operator': 'and', 'Subject': [u'Süper', u'Evänt']})
 
         # Narrow down by 2
 
@@ -222,7 +222,7 @@ class TestFilteritems(unittest.TestCase):
 
         self.assertEqual(qs(result, u'Süper'), {'Subject': u'Dokumänt'})
         self.assertEqual(qs(result, u'Dokumänt'), {'Subject': u'Süper'})
-        self.assertEqual(qs(result, u'Evänt'), {'Subject': [u'Süper', u'Dokumänt', u'Evänt'], 'Subject_op': 'and'})
+        self.assertEqual(qs(result, u'Evänt'), {'Subject': [u'Süper', u'Dokumänt', u'Evänt'], 'Subject_operator': 'and'})
 
         # Clicking on Event we should get 0 results as none will be in common
         catalog_results = ICollection(self.collection).results(

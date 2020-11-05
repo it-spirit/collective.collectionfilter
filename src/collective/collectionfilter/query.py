@@ -28,7 +28,7 @@ def make_query(params_dict):
             crit = idx_mod(crit) if idx_mod else safe_decode(crit)
 
             # filter operator
-            op = params_dict.get(idx + '_op', None)
+            op = params_dict.get(idx + '_operator', None)
             idx_has_operator = 'operator' in getattr(cat_idx, 'query_options', ['query', ])  # noqa: E501
 
             if op is None or not idx_has_operator:
